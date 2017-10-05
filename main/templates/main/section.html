@@ -1,0 +1,100 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+<title>AAU Push | {{section.code}}</title>
+{% endblock %}
+
+{% block style %}
+<style>
+	#announcements {
+		display:inline-block;
+		width:80%;
+		
+	}
+	
+	#materials {
+		width:100%;
+		min-height:300px;
+		padding-top:2px;
+		padding-bottom:30px;
+		background-color:#eee;
+			
+	}
+	
+	#course-list {
+			
+	}
+	.announcement {
+		width:85%;
+		margin-left:3%;	
+	}
+	
+	.announcement-message {
+		padding-left:5px;	
+	}
+	
+	.material {
+		width:80%;
+		margin-left:auto;
+		margin-right:auto;
+		margin-bottom:10px;
+		border-bottom-style:solid;
+		border-bottom-width:1px;
+		border-bottom-color:#F00;	
+	}
+	
+	.material-course {
+		font-size:120%;
+		font-weight:600;
+		margin:0px;	
+	}
+	
+	.material-name {
+		font-size:100%;
+		font-weight:600;	
+	}
+</style>
+{% endblock %}
+
+{% block section_code %}
+Year {{section.year}} | Section {{section.section_number}} | Code: {{section.code}}
+{% endblock %}
+
+{% block extra %}
+	<div id="course-list">
+    	{% for course in courses %}
+        		<div class="course"><a href="#"><h4>{{course.name}}</h4></a></div>
+        {% endfor %}
+    </div>
+{% endblock%}
+
+{% block content %}
+<table class="table">
+<tr class="row"><td class="col-sm-9">
+<div id="announcements">
+	<h5 class="text-capitalize mark"><u>{{section.studyfield}}</u> <span class="glyphicon glyphicon-chevron-right"></span> <u>{{section.code}}</u></h5>
+	<h3 class="page-header text-center">Announcements</h3>
+	{% for announcement in announcements %}
+	<div class="announcement media">
+    	<div class="media-body">
+        	<h4 class="media-heading">{{announcement.lecturer}} <small>Posted on {{announcement.pub_date}}</small></h4>
+            <p class="announcement-message">{{announcement.message}}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</td><td  class="col-sm-3">
+<div id="materials">
+	<h4 class="text-center">Uploads this week</h4>
+        
+    {% for upload in this_week %}
+    	<div class="material">
+        	<p class="material-course">{{upload.course}}</p>
+            <p class="material-description">{{upload.description}}[.{{upload.ext}}]</p>            
+            <p class="material-name">{{upload.name | capfirst}}&nbsp;[.{{upload.ext}}]</p>
+            <h5 class="material-pub_date"><small>Uploaded on {{upload.pub_date}}</small></h5>
+        </div>
+    {% endfor %}
+</div></td></tr>
+</table>
+{% endblock %}

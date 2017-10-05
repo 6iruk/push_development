@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>		
+        {% block title %}{% endblock %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        {% block script %}{% endblock %}
+<script>
+			$(document).ready(function() {
+					var h = $("#footer").height();
+					
+					$("#content").css("padding-bottom",h + 40)
+				});
+		</script>
+        {% block style %}{% endblock %}
+		<style>
+			html {
+				 font-size: 16px;
+				 height:100%;
+			} 
+		  		
+			body {
+				width:100%;
+				height:100%;	
+			}
+		      		
+		    a {
+				text-decoration: none;
+		      	color: #4480b7;
+			}
+			
+			q {
+	      		font-family: Copperplate, Papyrus;
+	     		font-size: 1.5rem;
+		    }  
+			#main {
+				min-height:100%;
+				position:relative;				
+			}
+			#content {
+				width:80%;
+				margin-left:20%;
+			}
+			 	
+		    #file {
+		      	color: #799f44;
+		    }
+				
+			#navigation {
+				position:fixed;
+				left:0px;
+				text-align:center;
+				width:20%;
+				min-height:100%;
+				background-color:#004040;				
+			}
+			
+			#footer {
+				position:absolute;
+				bottom:30px;
+				width:100%;
+			}
+		      	
+		    #switch{
+		      	float:right;
+		    }
+			
+			#quote {
+				width:60%;
+				margin-left:auto;
+				margin-right:auto;	
+			}
+		    
+			#push-pages {
+				position:fixed;
+				bottom:5px;
+				left:35%;
+				width:30%;
+				height:20px;	
+			}
+				  	
+			.header-content-left {
+				display:inline;
+				width:15%;
+				float:left;
+				padding-top:1%;
+				padding-left:0.5%;
+			}
+			
+		    .logo-header {
+				display:inline;
+				width:70%;	
+				margin:0px;
+			}
+				
+			.header-content-right {
+				display:inline;
+				width:15%;
+				float:right;
+				margin:0px;
+
+			}
+			
+			.push-page {
+				width:25%;
+				height:100%;
+				display:inline;
+				float:left;	
+			}
+			
+			.push-page-about-us {
+				background-color:#333;		
+			}
+			
+			.push-page-quick-page {
+				background-color:#4480b7;
+			}
+			
+			.push-page-blog-post-1 {
+				background-color:#cc0000;
+			}
+			
+			.push-page-blog-post-2 {
+				background-color:#799f44;
+			}
+					      	
+  		  </style>
+</head>
+	
+	<body bgcolor='#fffffa'>
+<div id="main">
+		<div id="navigation"> 
+<!--        		<div class="header-content header-content-left">
+					{% load static%}
+                    <img src="{% static 'main/header-contentL1.svg' %}" width="105%" height="90%">
+                </div>-->
+                
+                <div class="logo logo-header">                
+  					<a href="{% url 'Home' %}">
+                		{% load static %}
+                		<img src="{% static 'main/Colored-Logo-01.svg' %}" width="130px" height="90px">
+                	</a>
+                </div>
+                
+                {% block extra %}{% endblock %}
+<!--                <div class="header-content header-content-right">
+					{% load static%}
+                    <img src="{% static 'main/header-contentRtext1.svg' %}" width="100%" height="100%">
+                    <a href="#"><img src="{% static 'main/Android-robot.svg' %}" width="20%" ></a>
+                </div>-->
+        </div>
+        <div id="content">
+        	<div class="container-fluid">
+  				{% block content %}
+  				{% endblock %}
+        	</div>
+            <div id="push-pages">
+            	<a href="/About_us"><div class="push-page push-page-about-us">                
+                </div></a>
+                <a href="/Push_Page/1"><div class="push-page push-page-quick-page">
+                </div>
+                <a href="/Blog_post"><div class="push-page push-page-blog-post-1">
+                </div></a>
+                <a href="/Blog_post2"><div class="push-page push-page-blog-post-2">
+                </div></a>
+            </div>
+        </div>	
+<div id="footer" class="text-center">
+        	<div id="quote">
+				<q>{{quote.quote}}</q><br>- {{quote.author}}<br>
+            </div>
+    	</div>
+        </div>
+	</body>
+</html>
